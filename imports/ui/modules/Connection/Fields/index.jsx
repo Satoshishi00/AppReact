@@ -1,5 +1,5 @@
 import React from "react";
-import fields from "./fieldsArray";
+import fields from "./array";
 import CustomInput from "/imports/ui/components/CustomInput";
 
 const Fields = ({ update, state }) => {
