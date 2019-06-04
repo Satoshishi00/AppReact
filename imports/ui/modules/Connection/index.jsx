@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
-import CustomInput from '/imports/ui/components/CustomInput';
 import { Link } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data'
 
-const FIELDS = [
-  { name: "username",   type: "text",      placeholder: "Identifiant" },
-  { name: "password",   type: "password",  placeholder: "Password"    },
-];
+import Fields from './Fields';
 
 class Connection extends Component {
   state = {
@@ -37,17 +33,10 @@ class Connection extends Component {
     return (
       <div>
         <h1>Connection</h1>
-        {FIELDS.map(field => (
-          <CustomInput
-            type={field.type}
-            key={field.name}
-            update={this.update}
-            value={this.state[field.name]}
-            placeholder={field.placeholder}
-            name={field.name}
-            blabla="zliuheflz"
-          />
-        ))}
+        <Fields
+          update={this.update}
+          state={this.state}
+        />
         <button
           onClick={this.signin}
         >Signup
