@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
-import CustomInput from './CustomInput';
+import CustomInput from '/imports/ui/components/CustomInput';
 import { Editor } from '@tinymce/tinymce-react';
 import { withTracker } from 'meteor/react-meteor-data'
 

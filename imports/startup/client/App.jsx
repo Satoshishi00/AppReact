@@ -1,9 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Home from '/imports/ui/Home';
-import Inscription from '/imports/ui/Inscription';
-import Connection from '/imports/ui/Connection';
-import ArticleForm from '/imports/ui/ArticleForm';
+
+import Home         from '/imports/ui/modules/Home';
+import Inscription  from '/imports/ui/modules/Inscription';
+import Connection   from '/imports/ui/modules/Connection';
+import ArticleForm  from '/imports/ui/modules/ArticleForm';
 
 const App = () => (
   <Router>

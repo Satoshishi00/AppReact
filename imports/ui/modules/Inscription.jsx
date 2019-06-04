@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import { Meteor } from 'meteor/meteor';
-import CustomInput from './CustomInput';
+import { Accounts } from 'meteor/accounts-base';
+import CustomInput from '/imports/ui/components/CustomInput';
 import { Link } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data'
 
 const FIELDS = [
-  { name: "username",   type: "text",      placeholder: "Identifiant" },
-  { name: "password",   type: "password",  placeholder: "Password"    },
+  { name: "email",      type: "text",      placeholder: "Email"     },
+  { name: "password",   type: "password",  placeholder: "Password"  },
+  { name: "username",   type: "text",      placeholder: "Username" },
 ];
 
-class Connection extends Component {
+class Inscription extends Component {
   state = {
+    email: "",
     password: "",
     username: "",
   }
@@ -25,18 +27,20 @@ class Connection extends Component {
     this.setState({ [name]: value });
   };
 
-  signin = () => {
-    const { password, username } = this.state;
-    Meteor.loginWithPassword(username, password, (err) => {
+  signup = () => {
+    const { email, password, username } = this.state;
+    Accounts.createUser({ email, password, username }, (err) => {
       if (err)
         console.log(err);
+      else
+        this.setState({ email: "", password: "", username: "" });
     });
   }
 
   render() {
     return (
       <div>
-        <h1>Connection</h1>
+        <h1>Inscription</h1>
         {FIELDS.map(field => (
           <CustomInput
             type={field.type}
@@ -45,14 +49,13 @@ class Connection extends Component {
             value={this.state[field.name]}
             placeholder={field.placeholder}
             name={field.name}
-            blabla="zliuheflz"
           />
         ))}
         <button
-          onClick={this.signin}
+          onClick={this.signup}
         >Signup
         </button>
-        <Link to="/signup">Inscription</Link>
+        <Link to="signin">Connection</Link>
       </div>
     );
   }
@@ -60,7 +63,7 @@ class Connection extends Component {
 
 export default withTracker(() => ({
   userId: Meteor.userId(),
-}))(Connection);
+}))(Inscription);
 
 /*
 
@@ -68,6 +71,6 @@ export default withTracker(() => {
   return {
     userId: Meteor.userId(),
   };
-})(Connection)
+})(Inscription)
 
 */
